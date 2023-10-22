@@ -1,5 +1,10 @@
 import { PokemonGrid, PokemonsReponse, SimplePokemon } from "@/pokemons";
 
+export const metadata = {
+  title: '151 pokemons',
+  description: 'Lista de los pokemons'
+}
+
 const getPokemons = async(limit = 20, offset = 0):Promise<SimplePokemon[]> => {
   const data: PokemonsReponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
   .then( res => res.json() );
@@ -10,11 +15,9 @@ const getPokemons = async(limit = 20, offset = 0):Promise<SimplePokemon[]> => {
   }))
 
   //throw new Error('Esto es un error que no debería suceder');
-  //throw notFound;
+  //throw notFound();
   return pokemons;
 }
-
-
 
 export default async function PokemonsPage() {
     const pokemons = await getPokemons(151);
